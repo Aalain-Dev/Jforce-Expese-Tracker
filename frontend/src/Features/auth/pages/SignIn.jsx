@@ -16,7 +16,7 @@ const SignIn = ({ onSwitchToSignUp }) => {
   };
 
   return (
-    <div className="flex items-center justify-center bg-gray-100 px-4">
+    <div className=" min-h-screen flex items-center justify-center bg-gray-100 px-4">
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="w-full max-w-md mt-16 bg-white p-8 rounded-xl shadow-lg space-y-6 border border-gray-200"
@@ -40,9 +40,8 @@ const SignIn = ({ onSwitchToSignUp }) => {
             {...register('email', { required: 'Email is required' })}
             type="email"
             placeholder="Enter your email"
-            className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition ${
-              errors.email ? 'border-red-500' : 'border-gray-300'
-            }`}
+            className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition ${errors.email ? 'border-red-500' : 'border-gray-300'
+              }`}
           />
           {errors.email && (
             <p className="mt-1 text-sm text-red-500">{errors.email.message}</p>
@@ -61,9 +60,8 @@ const SignIn = ({ onSwitchToSignUp }) => {
               minLength: { value: 6, message: 'Password must be at least 6 characters' },
             })}
             placeholder="Enter your password"
-            className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition ${
-              errors.password ? 'border-red-500' : 'border-gray-300'
-            }`}
+            className={`w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 transition ${errors.password ? 'border-red-500' : 'border-gray-300'
+              }`}
           />
           {errors.password && (
             <p className="mt-1 text-sm text-red-500">{errors.password.message}</p>

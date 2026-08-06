@@ -21,7 +21,7 @@ const SignUp = ({ onSwitchToSignIn }) => {
   };
 
   return (
-    <div className="flex items-center justify-center bg-gray-100 px-4">
+    <div className=" min-h-screen  flex items-center justify-center bg-gray-100 px-4">
       <form
         onSubmit={handleSubmit(onSubmit)}
         className="w-full max-w-md bg-white shadow-lg rounded-xl p-8 space-y-5"
@@ -53,9 +53,8 @@ const SignUp = ({ onSwitchToSignIn }) => {
             {...register("full_name", {
               required: "Full name is required",
             })}
-            className={`w-full rounded-lg border px-4 py-2 outline-none transition focus:ring-2 focus:ring-blue-500 ${
-              errors.full_name ? "border-red-500" : "border-gray-300"
-            }`}
+            className={`w-full rounded-lg border px-4 py-2 outline-none transition focus:ring-2 focus:ring-blue-500 ${errors.full_name ? "border-red-500" : "border-gray-300"
+              }`}
           />
           {errors.full_name && (
             <p className="mt-1 text-sm text-red-500">
@@ -79,9 +78,8 @@ const SignUp = ({ onSwitchToSignIn }) => {
                 message: "Username must be at least 3 characters",
               },
             })}
-            className={`w-full rounded-lg border px-4 py-2 outline-none transition focus:ring-2 focus:ring-blue-500 ${
-              errors.username ? "border-red-500" : "border-gray-300"
-            }`}
+            className={`w-full rounded-lg border px-4 py-2 outline-none transition focus:ring-2 focus:ring-blue-500 ${errors.username ? "border-red-500" : "border-gray-300"
+              }`}
           />
           {errors.username && (
             <p className="mt-1 text-sm text-red-500">
@@ -105,9 +103,8 @@ const SignUp = ({ onSwitchToSignIn }) => {
                 message: "Please enter a valid email",
               },
             })}
-            className={`w-full rounded-lg border px-4 py-2 outline-none transition focus:ring-2 focus:ring-blue-500 ${
-              errors.email ? "border-red-500" : "border-gray-300"
-            }`}
+            className={`w-full rounded-lg border px-4 py-2 outline-none transition focus:ring-2 focus:ring-blue-500 ${errors.email ? "border-red-500" : "border-gray-300"
+              }`}
           />
           {errors.email && (
             <p className="mt-1 text-sm text-red-500">{errors.email.message}</p>
@@ -129,9 +126,8 @@ const SignUp = ({ onSwitchToSignIn }) => {
                 message: "Password must be at least 6 characters",
               },
             })}
-            className={`w-full rounded-lg border px-4 py-2 outline-none transition focus:ring-2 focus:ring-blue-500 ${
-              errors.password ? "border-red-500" : "border-gray-300"
-            }`}
+            className={`w-full rounded-lg border px-4 py-2 outline-none transition focus:ring-2 focus:ring-blue-500 ${errors.password ? "border-red-500" : "border-gray-300"
+              }`}
           />
           {errors.password && (
             <p className="mt-1 text-sm text-red-500">
