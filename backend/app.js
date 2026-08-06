@@ -30,8 +30,8 @@ const globalLimiter = rateLimit({
     },
 });
 app.use(globalLimiter)
-app.use("/ap/v1/auth", authroutes)
-app.use("/ap/v1/expenses", expenseroutes)
+app.use("/api/v1/auth", authroutes)
+app.use("/api/v1/expenses", expenseroutes)
 
 app.get("/health", (res) => {
     res.status(200).json(
