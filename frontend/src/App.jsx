@@ -12,7 +12,6 @@ function App() {
   return (
     <>
       <Routes>
-        {/* Public — logged-in users are redirected to dashboard */}
         <Route
           path='/'
           element={
@@ -22,7 +21,6 @@ function App() {
           }
         />
 
-        {/* Protected — unauthenticated users are redirected to login */}
         <Route
           path="dashboard"
           element={

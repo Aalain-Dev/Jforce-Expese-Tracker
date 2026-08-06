@@ -12,7 +12,6 @@ const SignUp = ({ onSwitchToSignIn }) => {
   const { signup, error, isLoading, success } = useRegister();
 
   const onSubmit = async (data) => {
-    // Map form field "full_name" to backend expected field "full_name"
     await signup({
       username: data.username,
       email: data.email,
@@ -31,21 +30,18 @@ const SignUp = ({ onSwitchToSignIn }) => {
           Registration
         </h2>
 
-        {/* Server-side error */}
         {error && (
           <div className="bg-red-50 border border-red-200 text-red-600 text-sm px-4 py-2 rounded-lg">
             {error}
           </div>
         )}
 
-        {/* Success message */}
         {success && (
           <div className="bg-green-50 border border-green-200 text-green-600 text-sm px-4 py-2 rounded-lg">
             Account created successfully! Redirecting to login...
           </div>
         )}
 
-        {/* Full Name */}
         <div>
           <label className="block text-md font-medium text-gray-700 mb-2">
             Full Name
@@ -68,7 +64,6 @@ const SignUp = ({ onSwitchToSignIn }) => {
           )}
         </div>
 
-        {/* Username */}
         <div>
           <label className="block text-md font-medium text-gray-700 mb-2">
             Username
@@ -95,7 +90,6 @@ const SignUp = ({ onSwitchToSignIn }) => {
           )}
         </div>
 
-        {/* Email */}
         <div>
           <label className="block text-md font-medium text-gray-700 mb-2">
             Email
@@ -120,7 +114,6 @@ const SignUp = ({ onSwitchToSignIn }) => {
           )}
         </div>
 
-        {/* Password */}
         <div>
           <label className="block text-md font-medium text-gray-700 mb-2">
             Password

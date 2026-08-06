@@ -1,16 +1,6 @@
 import React, { useEffect } from "react";
 import { useForm } from "react-hook-form";
 
-/**
- * Reusable expense form for both Add and Edit.
- *
- * Props:
- *  - defaultValues: pre-fill fields when editing (optional)
- *  - onSubmit(formData): called with validated form data
- *  - isLoading: show spinner on the submit button
- *  - serverError: display an error from the server
- *  - onCancel: optional cancel callback (e.g. to close modal)
- */
 const ExpenseForm = ({ defaultValues, onSubmit, isLoading, serverError, onCancel }) => {
     const isEditing = Boolean(defaultValues);
 
@@ -28,7 +18,6 @@ const ExpenseForm = ({ defaultValues, onSubmit, isLoading, serverError, onCancel
         },
     });
 
-    // Reset form if defaultValues change (switching between edit targets)
     useEffect(() => {
         reset(
             defaultValues || {
@@ -49,14 +38,12 @@ const ExpenseForm = ({ defaultValues, onSubmit, isLoading, serverError, onCancel
                 {isEditing ? "Update Expense" : "Add Expense"}
             </h2>
 
-            {/* Server error */}
             {serverError && (
                 <div className="bg-red-50 border border-red-200 text-red-600 text-sm px-4 py-2 rounded-lg">
                     {serverError}
                 </div>
             )}
 
-            {/* Expense Name */}
             <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                     Expense Name
@@ -77,7 +64,6 @@ const ExpenseForm = ({ defaultValues, onSubmit, isLoading, serverError, onCancel
                 )}
             </div>
 
-            {/* Amount */}
             <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                     Amount (₹)
@@ -100,7 +86,6 @@ const ExpenseForm = ({ defaultValues, onSubmit, isLoading, serverError, onCancel
                 )}
             </div>
 
-            {/* Date */}
             <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                     Date
@@ -120,7 +105,6 @@ const ExpenseForm = ({ defaultValues, onSubmit, isLoading, serverError, onCancel
                 )}
             </div>
 
-            {/* Description */}
             <div>
                 <label className="block text-sm font-medium text-gray-700 mb-1">
                     Description
@@ -135,7 +119,6 @@ const ExpenseForm = ({ defaultValues, onSubmit, isLoading, serverError, onCancel
                 />
             </div>
 
-            {/* Actions */}
             <div className="flex gap-3 pt-1">
                 {onCancel && (
                     <button

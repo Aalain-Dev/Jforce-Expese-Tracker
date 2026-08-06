@@ -25,14 +25,12 @@ const SignIn = ({ onSwitchToSignUp }) => {
           Login
         </h2>
 
-        {/* Server-side error */}
         {error && (
           <div className="bg-red-50 border border-red-200 text-red-600 text-sm px-4 py-2 rounded-lg">
             {error}
           </div>
         )}
 
-        {/* Email */}
         <div>
           <label className="block text-md font-medium text-gray-700 mb-2">
             Email
@@ -51,7 +49,6 @@ const SignIn = ({ onSwitchToSignUp }) => {
           )}
         </div>
 
-        {/* Password */}
         <div>
           <label className="block text-md font-medium text-gray-700 mb-2">
             Password

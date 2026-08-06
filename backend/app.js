@@ -19,12 +19,11 @@ app.use(express.urlencoded({
     extended: true
 }))
 
-
 const globalLimiter = rateLimit({
-    windowMs: 15 * 60 * 1000, // 15 minutes
-    max: 100,                  // max 100 requests per IP per window
-    standardHeaders: true,     // Return rate limit info in the `RateLimit-*` headers
-    legacyHeaders: false,      // Disable the `X-RateLimit-*` headers
+    windowMs: 15 * 60 * 1000,
+    max: 100,
+    standardHeaders: true,
+    legacyHeaders: false,
     message: {
         success: false,
         statusCode: 429,
@@ -32,6 +31,7 @@ const globalLimiter = rateLimit({
         errors: [],
     },
 });
+
 app.use(globalLimiter)
 app.use("/api/v1/auth", authroutes)
 app.use("/api/v1/expenses", expenseroutes)
@@ -42,9 +42,6 @@ app.get("/health", (req, res) => {
     })
 })
 
-// ─── Global Error Handler ────────────────────────────────────────────────────
-// Must be defined AFTER all routes. Catches any error passed to next(error)
-// or thrown inside an asyncHandler-wrapped route.
 app.use((err, req, res, next) => {
     const statusCode = err.statusCode || 500;
     const message = err.message || "Internal Server Error";

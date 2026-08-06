@@ -5,10 +5,6 @@ import {
     updateExpense,
 } from "../services/expense.service.js";
 
-/**
- * Hook to fetch all expenses for the current user.
- * Auto-fetches on mount. Exposes refetch() to reload manually.
- */
 export const useExpenses = () => {
     const [expenses, setExpenses] = useState([]);
     const [loading, setLoading] = useState(true);
@@ -19,7 +15,6 @@ export const useExpenses = () => {
         setError(null);
         try {
             const response = await getAllExpenses();
-            // Backend ApiResponse: { data: [...expenses], message: "..." }
             setExpenses(response.data || []);
         } catch (err) {
             const message =
@@ -39,10 +34,6 @@ export const useExpenses = () => {
     return { expenses, loading, error, refetch: fetchExpenses };
 };
 
-/**
- * Hook to create a new expense.
- * Calls onSuccess() callback when the expense is created so the list can refresh.
- */
 export const useCreateExpense = (onSuccess) => {
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(false);
@@ -67,10 +58,6 @@ export const useCreateExpense = (onSuccess) => {
     return { addExpense, error, isLoading };
 };
 
-/**
- * Hook to update an existing expense.
- * Calls onSuccess() callback when the expense is updated so the list can refresh.
- */
 export const useUpdateExpense = (onSuccess) => {
     const [error, setError] = useState(null);
     const [isLoading, setIsLoading] = useState(false);

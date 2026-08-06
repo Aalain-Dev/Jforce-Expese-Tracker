@@ -4,10 +4,6 @@ import jwt from "jsonwebtoken"
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
-/**
- * Creates an HTTP-aware error with a statusCode property.
- * The global error handler reads err.statusCode to set the HTTP status.
- */
 const createHttpError = (statusCode, message) => {
     const err = new Error(message);
     err.statusCode = statusCode;
@@ -49,7 +45,6 @@ const createUser = async (data) => {
         },
     });
 
-    // Don't return the hashed password to the client
     const { password: _, ...safeUser } = user;
     return safeUser;
 };
@@ -77,7 +72,6 @@ const signinuser = async (data) => {
 
     const token = signToken(user);
 
-    // Don't return the hashed password to the client
     const { password: _, ...safeUser } = user;
     return { user: safeUser, token };
 };

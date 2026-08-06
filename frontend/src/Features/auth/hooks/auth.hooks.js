@@ -3,10 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { loginuser, register } from "../services/auth.service.js";
 import { useAuth } from "../context/auth.context.jsx";
 
-/**
- * Hook to handle user login.
- * Calls the login service, stores auth data in context, and navigates to dashboard.
- */
 export const useLogin = () => {
     const { saveAuth, setLoading } = useAuth();
     const navigate = useNavigate();
@@ -17,7 +13,6 @@ export const useLogin = () => {
         setIsLoading(true);
         setError(null);
         try {
-            // Backend returns: { data: { user, token }, message: "..." }
             const response = await loginuser({ email, password });
             const { user, token } = response.data;
             saveAuth(user, token);
@@ -36,10 +31,6 @@ export const useLogin = () => {
     return { login, error, isLoading };
 };
 
-/**
- * Hook to handle user registration.
- * Calls the register service and navigates to sign-in on success.
- */
 export const useRegister = () => {
     const navigate = useNavigate();
     const [error, setError] = useState(null);
@@ -51,10 +42,9 @@ export const useRegister = () => {
         setError(null);
         setSuccess(false);
         try {
-            // Backend returns: { data: { ...user }, message: "User created successfully." }
             await register({ username, email, password, full_name });
             setSuccess(true);
-            navigate("/"); // Navigate back to sign-in after successful registration
+            navigate("/");
         } catch (err) {
             const message =
                 err?.response?.data?.message ||

@@ -7,7 +7,6 @@ const ExpensePage = () => {
     const navigate = useNavigate();
 
     const { addExpense, error, isLoading } = useCreateExpense(() => {
-        // After successful creation navigate to the list
         navigate('/dashboard/expenselist');
     });
 

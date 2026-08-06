@@ -7,20 +7,16 @@ import { useNavigate } from "react-router-dom";
 const ExpenseList = () => {
     const navigate = useNavigate();
 
-    // Fetch all expenses
     const { expenses, loading, error, refetch } = useExpenses();
 
-    // Modal state: null = closed, "add" = add modal, expense object = edit modal
     const [modalMode, setModalMode] = useState(null);
     const selectedExpense = typeof modalMode === "object" && modalMode !== null ? modalMode : null;
 
-    // Create hook — on success: close modal + refresh list
     const { addExpense, error: createError, isLoading: createLoading } = useCreateExpense(() => {
         setModalMode(null);
         refetch();
     });
 
-    // Update hook — on success: close modal + refresh list
     const { editExpense, error: updateError, isLoading: updateLoading } = useUpdateExpense(() => {
         setModalMode(null);
         refetch();
@@ -34,7 +30,6 @@ const ExpenseList = () => {
         }
     };
 
-    // Build defaultValues for the edit form from the backend expense object
     const editDefaults = selectedExpense
         ? {
               expense_name: selectedExpense.expense_name,
@@ -63,8 +58,6 @@ const ExpenseList = () => {
     return (
         <div className="min-h-screen bg-gray-100 px-4 py-10">
             <div className="max-w-6xl mx-auto">
-
-                {/* Header */}
                 <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
                     <div>
                         <h1 className="text-3xl font-bold text-gray-800">Expense List</h1>
@@ -91,7 +84,6 @@ const ExpenseList = () => {
                     </div>
                 </div>
 
-                {/* Fetch error */}
                 {error && (
                     <div className="bg-red-50 border border-red-200 text-red-600 text-sm px-4 py-3 rounded-lg mb-4">
                         {error}
@@ -104,7 +96,6 @@ const ExpenseList = () => {
                     </div>
                 )}
 
-                {/* Table card */}
                 <div className="bg-white rounded-xl shadow-lg overflow-hidden">
                     {loading ? (
                         <div className="flex items-center justify-center py-20 text-gray-400">
@@ -182,7 +173,6 @@ const ExpenseList = () => {
                 </div>
             </div>
 
-            {/* Add / Edit Modal */}
             <Modal isOpen={modalMode !== null} onClose={() => setModalMode(null)}>
                 <ExpenseForm
                     defaultValues={editDefaults}
