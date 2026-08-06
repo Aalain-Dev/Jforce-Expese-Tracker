@@ -1,17 +1,35 @@
-import React from 'react'
-import ExpenseForm from '../../../Components/ExpenseForm'
+import React from 'react';
+import ExpenseForm from '../../../Components/ExpenseForm';
+import { useCreateExpense } from '../hooks/expense.hooks.js';
+import { useNavigate } from 'react-router-dom';
 
 const ExpensePage = () => {
-  return (
-    <>
-        <div className="flex items-center flex-col justify-center  bg-gray-100">
-            <p className="text-black-700 text-left mt-10 mb-10">
-                Add The Required Expense Details Below and Click Submit to Add the Expense
-            </p>
-            <ExpenseForm onSubmit={(data) => console.log(data)} />
-        </div>
-    </>
-  )
-}
+    const navigate = useNavigate();
 
-export default ExpensePage
+    const { addExpense, error, isLoading } = useCreateExpense(() => {
+        // After successful creation navigate to the list
+        navigate('/dashboard/expenselist');
+    });
+
+    const onSubmit = (data) => {
+        addExpense(data);
+    };
+
+    return (
+        <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 px-4 py-10">
+            <p className="text-gray-600 text-sm mb-6 text-center max-w-md">
+                Fill in the details below and click <strong>Add Expense</strong> to save your expense.
+            </p>
+            <div className="w-full max-w-lg shadow-lg rounded-xl">
+                <ExpenseForm
+                    onSubmit={onSubmit}
+                    isLoading={isLoading}
+                    serverError={error}
+                    onCancel={() => navigate('/dashboard/expenselist')}
+                />
+            </div>
+        </div>
+    );
+};
+
+export default ExpensePage;

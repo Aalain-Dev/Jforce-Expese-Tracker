@@ -1,15 +1,19 @@
-import React, { useState } from 'react'
-import SignIn from './SignIn'
-import SignUp from './SignUp'
+import React, { useState } from 'react';
+import SignIn from './SignIn';
+import SignUp from './SignUp';
 
 const AuthMain = () => {
-    const [value, setvalue] = useState(true)
-  return (
-   <>
-   <SignIn/>
-   <SignUp/>
-   </>
-  )
-}
+    const [isSignIn, setIsSignIn] = useState(true);
 
-export default AuthMain
+    return (
+        <>
+            {isSignIn ? (
+                <SignIn onSwitchToSignUp={() => setIsSignIn(false)} />
+            ) : (
+                <SignUp onSwitchToSignIn={() => setIsSignIn(true)} />
+            )}
+        </>
+    );
+};
+
+export default AuthMain;

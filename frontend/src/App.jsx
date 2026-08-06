@@ -1,29 +1,41 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import heroImg from './assets/hero.png'
 import './App.css'
-import Home from './Pages/Home'
 import { Route, Routes } from 'react-router-dom'
 import AuthMain from './Features/auth/pages/AuthMain'
 import Dashboard from './Features/Dashboard/pages/Dashboard'
 import ExpensePage from './Features/Dashboard/pages/ExpensePage'
 import ExpenseList from './Features/Dashboard/pages/ExpenseList'
 import DashboardLayout from './Features/Dashboard/pages/DashboardLayout'
+import PublicRoute from './Components/PublicRoute'
+import ProtectedRoute from './Components/ProtectedRoute'
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
       <Routes>
-        <Route path='/' element={<AuthMain />} />
-        <Route path="dashboard" element={<DashboardLayout />}>
+        {/* Public — logged-in users are redirected to dashboard */}
+        <Route
+          path='/'
+          element={
+            <PublicRoute>
+              <AuthMain />
+            </PublicRoute>
+          }
+        />
+
+        {/* Protected — unauthenticated users are redirected to login */}
+        <Route
+          path="dashboard"
+          element={
+            <ProtectedRoute>
+              <DashboardLayout />
+            </ProtectedRoute>
+          }
+        >
           <Route path="home" index element={<Dashboard />} />
           <Route path="expense" element={<ExpensePage />} />
           <Route path="expenselist" element={<ExpenseList />} />
         </Route>
-      </Routes >
+      </Routes>
     </>
   )
 }
